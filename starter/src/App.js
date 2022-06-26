@@ -41,7 +41,7 @@ const senQueryToAppPage=async (query)=>{
   try{
   const res = await BooksAPI.search(query);
  // console.log("from outside books : " +JSON.stringify(res))
-  let retrievedSearchBooks = [...res?.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ];
+  let retrievedSearchBooks = [...res?.filter(b=>b['imageLinks']!=undefined &&b['imageLinks']['thumbnail']!=undefined ).map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ];
   retrievedSearchBooks =addShelfState(retrievedSearchBooks)
   setSearchBooks(retrievedSearchBooks);
   }catch(e){

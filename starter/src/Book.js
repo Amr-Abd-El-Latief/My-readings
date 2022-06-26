@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BookMenu from './BookMenu'
 
 function Book({book,updateBookStateInGrid}) {
-    console.log("book : " + JSON.stringify(book))
+   // console.log("book : " + JSON.stringify(book))
     const [bookCopy,setBook] = useState({...book})
 
     const updateBookState = (bookState)=>{

@@ -5,7 +5,7 @@ import SearchForm from './SearchForm'
 function SearchPage(props) {
 
   const [shownBooks,setShownBooks] = useState([]);
-  console.log("search page >>> books " + JSON.stringify(props));
+  //console.log("search page >>> books " + JSON.stringify(props));
 
   const updateBooks = (sBooks)=>{
      setShownBooks(sBooks);
