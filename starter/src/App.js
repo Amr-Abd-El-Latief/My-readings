@@ -9,7 +9,11 @@ import { BrowserRouter,Routes, Route, Link } from 'react-router-dom';
 
 
 function App() {
+  let booksList=[];
   const [showSearchPage, setShowSearchpage] = useState(false);
+  const [books,setBooks]=useState([...booksList])
+  const [searchBooks,setSearchBooks]=useState([...booksList])
+
 
   useEffect(()=>{
     const getBooks = async ()=>{
@@ -20,25 +24,13 @@ function App() {
      
     }
     getBooks();
-  }
+  },[]
     )
-
-  let booksList=[]
-  const [books,setBooks]=useState([...booksList])
-  const [searchBooks,setSearchBooks]=useState([...booksList])
-
-
-
 
 const updateBookState = (book)=>{
-
-
   booksList = books.map(b=>{
    return b.id===book.id?book:b}
-    
     )
-
-
   setBooks([...booksList]);
 
   BooksAPI.update(book,book.shelf)
@@ -59,9 +51,7 @@ const updateBooksinApp = (book)=>{
   updateBookState(book)
 }
 
-const backToMainPage= ()=>{
- //
-}
+
 
   return (
 
@@ -80,20 +70,20 @@ const backToMainPage= ()=>{
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
 
-                  <BooksGrid books={books.filter(b=>b.shelf==='currentlyReading')} updateBooksinApp={updateBooksinApp} />
+                  <BooksGrid books={books.filter(b=>b.shelf==='currentlyReading')} updateBooksinApp={updateBookState} />
   
                 </div>
               </div>
               <div className="bookshelf">
                 <h2 className="bookshelf-title">Want to Read</h2>
                 <div className="bookshelf-books">
-                <BooksGrid books={books.filter(b=>b.shelf==='wantToRead')}  updateBooksinApp={updateBooksinApp}/>
+                <BooksGrid books={books.filter(b=>b.shelf==='wantToRead')}  updateBooksinApp={updateBookState}/>
                 </div>
               </div>
               <div className="bookshelf">
                 <h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
-                <BooksGrid books={books.filter(b=>b.shelf==='read')} updateBooksinApp={updateBooksinApp} />
+                <BooksGrid books={books.filter(b=>b.shelf==='read')} updateBooksinApp={updateBookState} />
                 </div>
               </div>
             </div>
@@ -104,8 +94,8 @@ const backToMainPage= ()=>{
         </div>
       
       } />
-      <Route path="/search" element={ <SearchPage books={searchBooks} updateBooksinApp={updateBooksinApp} senQueryToAppPage={senQueryToAppPage} 
-        backToMainPage={backToMainPage}/>}/>
+      <Route path="/search" element={ <SearchPage books={searchBooks} updateBooksinApp={updateBookState} senQueryToAppPage={senQueryToAppPage} 
+        />}/>
     
       <Route path="*" element={<NotFound />}/>
 

@@ -2,7 +2,6 @@ import React from 'react'
 import Book from './Book'
 
 function BooksGrid({books,updateBooksinApp}) {
-   // console.log("BooksGrid >> books : " +JSON.stringify(books));
     const updateBookStateInGrid = (book)=>{
      books = books?.map(b=>b.id===book.id?book:b)
       updateBooksinApp(book)

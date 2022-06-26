@@ -14,15 +14,15 @@ function Book({book,updateBookStateInGrid}) {
   return (
     <div className="book">
     <div className="book-top">
-      <div
+      <img
         className="book-cover"
         style={{
           width: 128,
           height: 193,
           backgroundImage:
-            'url('+book.previewLink+')',
+            'url('+book?.previewLink+')'
         }}
-      ></div>
+      ></img>
       <div className="book-shelf-changer">
         <BookMenu currentState={book.shelf} updateBookState={updateBookState} />
 

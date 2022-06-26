@@ -20,14 +20,12 @@ function SearchPage(props) {
     props.updateBooksinApp(book)
   }
 
-  const backToMainPage= ()=>{
-    props.backToMainPage();
-  }
+
 
   return (
     <div className="search-books">
      <SearchForm books={props.books} updateBooks={updateBooks} senQueryToSearchPage = {senQueryToSearchPage} 
-     backToMainPage={backToMainPage}/>
+     />
     <div className="search-books-results">
       <BooksGrid books={props.books}  updateBooksinApp={updateBooksinSearchPage} />
     </div>

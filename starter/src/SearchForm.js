@@ -14,15 +14,13 @@ function SearchForm(props) {
 
       };
 
-      const backToMainPage= ()=>{
-        props.backToMainPage();
-      }
+
 
    return (
     <div className="search-books-bar">
          <Link to="/"> <a
       className="close-search"
-      onClick={() => {backToMainPage()}}
+      
     >
       Close
     </a></Link>
