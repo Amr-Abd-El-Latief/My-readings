@@ -18,9 +18,9 @@ function App() {
   useEffect(()=>{
     const getBooks = async ()=>{
       const res = await BooksAPI.getAll();
-      setBooks([...res.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['previewLink']}}) ]);
-      console.log("from outside books : " +JSON.stringify(books))
-
+    //  console.log("from outside books : " +JSON.stringify(res))
+      setBooks([...res.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ]);
+     // console.log("from outside books : " +JSON.stringify(books))
      
     }
     getBooks();
@@ -40,18 +40,13 @@ const updateBookState = (book)=>{
 const senQueryToAppPage=async (query)=>{
   try{
   const res = await BooksAPI.search(query);
-  setSearchBooks([...res?.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['previewLink']}}) ]);
+  console.log("from outside books : " +JSON.stringify(res))
+
+  setSearchBooks([...res?.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ]);
   }catch(e){
     console.error(e)
   }
 }
-
-const updateBooksinApp = (book)=>{
-
-  updateBookState(book)
-}
-
-
 
   return (
 

@@ -16,11 +16,15 @@ function Book({book,updateBookStateInGrid}) {
     <div className="book-top">
       <img
         className="book-cover"
+
+        src={book?.previewLink}
+
         style={{
-          width: 128,
-          height: 193,
           backgroundImage:
-            'url('+book?.previewLink+')'
+          `url(${book?.previewLink})`,
+          width: 128,
+          height: 193
+      
         }}
       ></img>
       <div className="book-shelf-changer">
