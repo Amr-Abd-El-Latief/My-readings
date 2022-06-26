@@ -1,3 +1,31 @@
+# my readings Project 
+
+My readings is a project which enables you to store your readings in three diffrent states: 
+
+    Currently Reading
+    Want to Read
+    Read
+
+
+# How to install and run 
+
+    to install My reading Project
+
+    1 - cd to the project on the same level of package.json file
+
+    2 - run: npm install
+
+    to run the project 
+
+    3 - run: npm start
+
+
+
+
+
+
+
+
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.

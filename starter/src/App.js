@@ -18,7 +18,7 @@ function App() {
   useEffect(()=>{
     const getBooks = async ()=>{
       const res = await BooksAPI.getAll();
-    //  console.log("from outside books : " +JSON.stringify(res))
+      console.log("from outside books : " +JSON.stringify(res))
       setBooks([...res.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ]);
      // console.log("from outside books : " +JSON.stringify(books))
      
@@ -40,12 +40,21 @@ const updateBookState = (book)=>{
 const senQueryToAppPage=async (query)=>{
   try{
   const res = await BooksAPI.search(query);
-  console.log("from outside books : " +JSON.stringify(res))
-
-  setSearchBooks([...res?.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ]);
+ // console.log("from outside books : " +JSON.stringify(res))
+  let retrievedSearchBooks = [...res?.map(b=>{return {title:b['title'],id:b['id'],authors:b['authors'],shelf:b['shelf'],previewLink:b['imageLinks']['thumbnail']}}) ];
+  retrievedSearchBooks =addShelfState(retrievedSearchBooks)
+  setSearchBooks(retrievedSearchBooks);
   }catch(e){
     console.error(e)
   }
+}
+
+const addShelfState= (bookList)=>{
+  return bookList.map(b=>{
+     b['shelf'] = books.filter(c=>c.id===b.id)[0]?.shelf;
+     return b;
+  })
+
 }
 
   return (
