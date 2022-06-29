@@ -33,9 +33,11 @@ function App() {
     )
     setBooks([...booksList]);
 
-    BooksAPI.update(book, book.shelf)
+    BooksAPI.update(book, book.shelf);
+
 
   }
+  
 
   const senQueryToAppPage = async (query) => {
     try {
