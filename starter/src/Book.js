@@ -14,14 +14,15 @@ function Book({book,updateBookStateInGrid}) {
   return (
     <div className="book">
     <div className="book-top">
-      <img
+      <img 
+      
+      alt="book Cover"
+
         className="book-cover"
-
-        src={book?.previewLink}
-
+        
         style={{
           backgroundImage:
-          `url(${book?.previewLink})`,
+          `url(${book?.imageLinks['thumbnail']})`,
           width: 128,
           height: 193
       
@@ -33,7 +34,7 @@ function Book({book,updateBookStateInGrid}) {
       </div>
     </div>
     <div className="book-title">{book.title}</div>
-    <div className="book-authors">{book.authors?.map((author)=><p>{author}</p>)}</div>
+    <div className="book-authors">{book.authors?.map((author,index)=><p key={index}>{author}</p>)}</div>
   </div>
   )
 }

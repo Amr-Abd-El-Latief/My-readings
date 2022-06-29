@@ -1,6 +1,5 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import BooksGrid from "./BooksGrid";
 import BookShelf from "./BookShelf";
 
 import SearchPage from "./SearchPage";
@@ -11,7 +10,6 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   let booksList = [];
-  const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([...booksList])
   const [searchBooks, setSearchBooks] = useState([...booksList])
 
@@ -19,14 +17,14 @@ function App() {
   useEffect(() => {
     const getBooks = async () => {
       const res = await BooksAPI.getAll();
-      console.log("from outside books : " + JSON.stringify(res))
-      setBooks([...res.map(b => { return { title: b['title'], id: b['id'], authors: b['authors'], shelf: b['shelf'], previewLink: b['imageLinks']['thumbnail'] } })]);
+      const validatedRes = Array.isArray(res)?res:[];
+     // console.log("from outside books : " + JSON.stringify(res))
+      setBooks([...validatedRes]);
       // console.log("from outside books : " +JSON.stringify(books))
 
     }
     getBooks();
-  }, []
-  )
+  }, [])
 
   const updateBookState = (book) => {
     booksList = books.map(b => {
@@ -41,9 +39,8 @@ function App() {
 
   const senQueryToAppPage = async (query) => {
     try {
-      const res = await BooksAPI.search(query);
-      // console.log("from outside books : " +JSON.stringify(res))
-      let retrievedSearchBooks = [...res?.filter(b => b['imageLinks'] != undefined && b['imageLinks']['thumbnail'] != undefined).map(b => { return { title: b['title'], id: b['id'], authors: b['authors'], shelf: b['shelf'], previewLink: b['imageLinks']['thumbnail'] } })];
+      const res = await BooksAPI.search(query.trim());
+      let retrievedSearchBooks =Array.isArray(res)?[...res?.filter(b => b['imageLinks'] !== undefined && b['imageLinks']['thumbnail'] !== undefined)]:[];
       retrievedSearchBooks = addShelfState(retrievedSearchBooks)
       setSearchBooks(retrievedSearchBooks);
     } catch (e) {
@@ -80,7 +77,7 @@ function App() {
                 </div>
               </div>
               <Link to="/search">  <div className="open-search">
-                <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+                <a href>Add a book</a>
               </div></Link>
             </div>
 

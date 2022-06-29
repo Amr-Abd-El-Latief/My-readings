@@ -9,8 +9,8 @@ function SearchForm(props) {
         if(query===undefined){
             query = "";
         }
-        setQuery(query.trim());
-        props.senQueryToSearchPage(query.trim());
+        setQuery(query);
+        props.senQueryToSearchPage(query);
 
       };
 
@@ -18,7 +18,7 @@ function SearchForm(props) {
 
    return (
     <div className="search-books-bar">
-         <Link to="/"> <a
+         <Link to="/"> <a href
       className="close-search"
       
     >
