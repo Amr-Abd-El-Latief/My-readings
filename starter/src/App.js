@@ -77,7 +77,7 @@ function App() {
                 </div>
               </div>
               <Link to="/search">  <div className="open-search">
-                <a href>Add a book</a>
+                <a href='true'>Add a book</a>
               </div></Link>
             </div>
 

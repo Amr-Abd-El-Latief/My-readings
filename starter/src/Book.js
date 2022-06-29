@@ -15,8 +15,6 @@ function Book({book,updateBookStateInGrid}) {
     <div className="book">
     <div className="book-top">
       <img 
-      
-      alt="book Cover"
 
         className="book-cover"
         

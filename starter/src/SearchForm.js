@@ -18,7 +18,7 @@ function SearchForm(props) {
 
    return (
     <div className="search-books-bar">
-         <Link to="/"> <a href
+         <Link to="/"> <a href='true'
       className="close-search"
       
     >
