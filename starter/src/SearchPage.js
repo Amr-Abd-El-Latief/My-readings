@@ -27,7 +27,8 @@ function SearchPage(props) {
      <SearchForm books={props.books} updateBooks={updateBooks} senQueryToSearchPage = {senQueryToSearchPage} 
      />
     <div className="search-books-results">
-      <BooksGrid books={props.books}  updateBooksinApp={updateBooksinSearchPage} />
+     {props.books.length>=1 && <BooksGrid books={props.books}  updateBooksinApp={updateBooksinSearchPage} />}
+     {props.books.length<=0 && <h1>No Matching Books! </h1>}
     </div>
   </div>
   )

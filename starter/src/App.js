@@ -78,9 +78,14 @@ function App() {
                   <BookShelf books={books.filter(b => b.shelf === 'read')} bookShelfTitle='Read' updateBooksinApp={updateBookState} />
                 </div>
               </div>
-              <Link to="/search">  <div className="open-search">
-                <a href='true'>Add a book</a>
-              </div></Link>
+              <div className="open-search">
+             
+              <Link to="/search"> 
+              
+               Add a book
+              </Link>
+              
+              </div>
             </div>
 
           } />
